@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calculator</title>
+<style>
+body{
+background:#e8f0fe;
+font-family:Arial;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+.calculator{
+background:#222;
+padding:20px;
+border-radius:15px;
+box-shadow:0 5px 20px #555;
+}
+h2{
+color:white;
+text-align:center;
+}
+input{
+width:240px;
+height:50px;
+font-size:20px;
+text-align:right;
+margin-bottom:10px;
+border-radius:8px;
+border:0;
+padding:5px;
+}
+button{
+width:55px;
+height:50px;
+margin:3px;
+font-size:20px;
+border:0;
+border-radius:8px;
+cursor:pointer;
+}
+button:hover{background:#bbb}
+.op{
+background:#ff9800;
+color:white;
+}
+.clear{
+background:#f44336;
+color:white;
+}
+.equal{
+background:#4caf50;
+color:white;
+}
+</style>
+</head>
+<body>
+<div class="calculator">
+<h2>Calculator</h2>
+<input id="display" value="0" readonly><br>
+<button class="clear" onclick="clr()">C</button>
+<button onclick="del()">⌫</button>
+<button class="op" onclick="add('%')">%</button>
+<button class="op" onclick="add('/')">÷</button><br>
+<button onclick="add('7')">7</button>
+<button onclick="add('8')">8</button>
+<button onclick="add('9')">9</button>
+<button class="op" onclick="add('*')">×</button><br>
+<button onclick="add('4')">4</button>
+<button onclick="add('5')">5</button>
+<button onclick="add('6')">6</button>
+<button class="op" onclick="add('-')">−</button><br>
+<button onclick="add('1')">1</button>
+<button onclick="add('2')">2</button>
+<button onclick="add('3')">3</button>
+<button class="op" onclick="add('+')">+</button><br>
+<button onclick="add('0')">0</button>
+<button onclick="add('.')">.</button>
+<button class="equal" onclick="cal()">=</button>
+</div>
+<script>
+let d=document.getElementById("display");
+function add(x){
+if(d.value.includes("Cannot")) d.value="";
+if(d.value=="0" && x!=".") d.value="";
+d.value+=x;
+}
+function cal(){
+try{
+if(d.value.includes("/0"))
+throw "Cannot divide by zero!";
+d.value=eval(d.value);
+}catch(e){
+d.value=e;
+}
+}
+function clr(){
+d.value=" ";
+}
+function del() {
+if (d.value === "Cannot divide by zero!") {
+d.value = "0";
+} else {
+d.value = d.value.slice(0, -1);
+if (d.value === "") {
+d.value = "0";
+}
+}
+}
+</script>
+</body>
+</html>

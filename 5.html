@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registration Form</title>
+<style>
+body {
+font-family: Arial;
+background: #f2f2f2;
+}
+form {
+width: 350px;
+margin: 40px auto;
+background: white;
+padding: 25px;
+border-radius: 10px;
+box-shadow: 0 0 10px gray;
+}
+h2 {
+text-align: center;
+}
+label {
+display: block;
+margin-top: 12px;
+}
+input, select {
+width: 100%;
+padding: 8px;
+margin-top: 5px;
+box-sizing: border-box;
+}
+.gender input,
+.terms input {
+width: auto;
+}
+.error {
+color: red;
+font-size: 13px;
+}
+button {
+width: 100%;
+padding: 10px;
+margin-top: 15px;
+background: blue;
+color: white;
+border: none;
+border-radius: 5px;
+}
+</style>
+</head>
+<body>
+<form id="registrationForm">
+<h2>Registration Form</h2>
+<!-- Text -->
+<label>Name</label>
+<input type="text" id="name" placeholder="Enter your name"><div id="nameError" class="error"></div>
+<!-- Email -->
+<label>Email</label>
+<input type="email" id="email" placeholder="Enter youremail"><div id="emailError" class="error"></div>
+<!-- Password -->
+<label>Password</label>
+<input type="password" id="password" placeholder="Enterpassword"><div id="passwordError" class="error"></div>
+<!-- Radio -->
+<label>Gender</label>
+<div class="gender">
+<input type="radio" name="gender" value="Male"> Male<input type="radio" name="gender" value="Female">Female</div>
+<div id="genderError" class="error"></div>
+<!-- Select -->
+<label>Course</label>
+<select id="course">
+<option value="">Select Course</option>
+<option>MCA</option>
+<option>MBA</option>
+<option>BCA</option>
+</select>
+<div id="courseError" class="error"></div>
+<!-- Checkbox -->
+<div class="terms">
+<input type="checkbox" id="terms">
+I agree to the terms and conditions
+</div>
+<div id="termsError" class="error"></div>
+<button type="submit">Register</button>
+</form>
+<script>
+document.getElementById("registrationForm").addEventListener("submit",function(event) {
+event.preventDefault();
+// Clear old errors
+document.querySelectorAll(".error").forEach(function(error){error.innerHTML = "";
+});
+let valid = true;
+// Name validation
+let name = document.getElementById("name").value.trim();if (name === "") {
+document.getElementById("nameError").innerHTML =
+"Name is required";
+valid = false;
+}
+else if (!/^[A-Za-z ]+$/.test(name)) {
+document.getElementById("nameError").innerHTML =
+"Name should contain only letters";
+valid = false;
+}
+else if (name.length < 3) {
+document.getElementById("nameError").innerHTML =
+"Name must be at least 3 characters";
+valid = false;
+}
+// Email validation
+let email = document.getElementById("email").value.trim();if (email === "") {
+document.getElementById("emailError").innerHTML ="Email is required";
+valid = false;
+}
+else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {document.getElementById("emailError").innerHTML ="Enter a valid email";
+valid = false;
+}
+// Password validation
+let password = document.getElementById("password").value;if (password === "") {
+document.getElementById("passwordError").innerHTML="Password is required";
+valid = false;
+}
+else if (password.length < 6) {
+document.getElementById("passwordError").innerHTML="Password must be at least 6 characters";
+valid = false;
+}
+// Gender validation
+let gender =
+document.querySelector('input[name="gender"]:checked');
+if (!gender) {
+document.getElementById("genderError").innerHTML ="Please select your gender";
+valid = false;
+}
+// Course validation
+let course = document.getElementById("course").value;
+if (course === "") {
+document.getElementById("courseError").innerHTML ="Please select a course";
+valid = false;
+}
+// Checkbox validation
+if (!document.getElementById("terms").checked) {
+document.getElementById("termsError").innerHTML ="Please accept the terms";
+valid = false;
+}
+// Success message
+if (valid) {
+alert("Registration Successful!");
+document.getElementById("registrationForm").reset();}
+});
+</script>
+</body>
+</html>

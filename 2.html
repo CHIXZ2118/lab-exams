@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Responsive Layout</title>
+<style>
+* {
+box-sizing: border-box;
+}
+body {
+margin: 0;
+font-family: Arial;
+}
+/* Header */
+header {
+background: #333;
+color: white;
+padding: 20px;
+text-align: center;
+}
+/* Main Layout - CSS Grid */
+.layout {
+display: grid;
+grid-template-columns: 200px 1fr;
+min-height: 400px;
+}
+/* Sidebar */
+.sidebar {
+background: #ddd;
+padding: 20px;
+}
+.sidebar a {
+display: block;
+padding: 10px;
+text-decoration: none;
+color: black; }
+/* Content - Flexbox */
+.content {
+padding: 20px;
+display: flex;
+gap: 20px;
+flex-wrap: wrap;
+}
+.card {
+background: #f2f2f2;
+padding: 20px;
+border: 1px solid #ccc;
+flex: 1;
+min-width: 200px;
+}
+/* Footer */
+footer {
+background: #333;
+color: white;
+text-align: center;
+padding: 15px;
+}
+/* Responsive Design */
+@media (max-width: 600px) {
+.layout {
+grid-template-columns: 1fr;
+}
+.content {
+flex-direction: column;
+} }
+</style>
+</head>
+<body>
+<header>
+<h1>My Website</h1>
+<p>Responsive Layout using Flexbox & Grid</p>
+</header>
+<div class="layout">
+<!-- Sidebar -->
+<aside class="sidebar">
+<h3>Menu</h3>
+<a href="#">Home</a>
+<a href="#">About</a>
+<a href="#">Courses</a>
+<a href="#">Contact</a>
+</aside>
+<!-- Main Content -->
+<main class="content">
+<div class="card">
+<h2>HTML</h2>
+<p>HTML is used to create the structure of a webpage.</p>
+</div>
+<div class="card">
+<h2>CSS</h2>
+<p>CSS is used to style and design a webpage.</p></div>
+<div class="card">
+<h2>JavaScript</h2>
+<p>JavaScript is used to add interactivity.</p></div>
+</main>
+</div>
+<footer>
+<p>&copy; 2026 My Website</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Task List</title>
+<style>
+body {
+font-family: Arial;
+background-color: #f2f2f2;
+padding: 30px;
+}
+.box {
+width: 400px;
+margin: auto;
+background: white;
+padding: 20px;
+border-radius: 8px;
+}
+h2 {
+text-align: center;
+}
+input {
+padding: 10px;
+width: 65%;
+}
+button {
+padding: 10px;
+border: none;
+cursor: pointer;
+}
+#addBtn {
+background: green;
+color: white;
+}
+li {
+margin: 10px 0;
+padding: 10px;
+background: #eee;
+}
+.edit {
+background: orange;
+}
+.delete {
+background: red;
+color: white;
+}
+.completed {
+text-decoration: line-through;
+background: lightgreen;
+}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>My Task List</h2>
+<input type="text" id="taskInput" placeholder="Enter task"><button id="addBtn">Add</button>
+<ul id="taskList"></ul>
+</div>
+<script>
+// Select elements
+const input = document.querySelector("#taskInput");
+const addBtn = document.querySelector("#addBtn");
+const taskList = document.querySelector("#taskList");
+// Add task
+addBtn.addEventListener("click", function() {
+if (input.value == "") {
+alert("Enter a task");
+return;
+}
+const li = document.createElement("li");
+li.innerHTML = `
+<span>${input.value}</span>
+<button class="edit">Edit</button>
+<button class="delete">Delete</button>
+`;
+taskList.appendChild(li);
+input.value = "";
+});
+// Edit and Delete
+taskList.addEventListener("click", function(event) {
+const li = event.target.closest("li");
+// Delete
+if (event.target.classList.contains("delete")) {
+li.remove();
+}
+// Edit
+if (event.target.classList.contains("edit")) {
+const span = li.querySelector("span");
+let newTask = prompt("Edit task:", span.textContent);if (newTask != null && newTask != "") {
+span.textContent = newTask;
+}
+}
+});
+// Change style when task is clicked
+taskList.addEventListener("dblclick", function(event){const li = event.target.closest("li");
+li.classList.toggle("completed");
+});
+</script>
+</body>
+</html>
